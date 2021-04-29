@@ -3,17 +3,17 @@ const data = {
   pages: [
     {
       type: 'bookPage',
-      image: './some-image.jpg',
+      image: 'http://www.fillmurray.com/g/200/300',
       caption: 'Something interesting',
       text: 'Hey yo',
       components: [
         {
           type: 'shape',
           shape: 'circle',
-          width: 100,
-          height: 100,
+          width: 40,
+          height: 40,
           x: 0,
-          y: 100
+          y: 0
         }
       ]
     },
@@ -28,11 +28,11 @@ const data = {
 
 function App() {
   return (
-    <>
+    <div>
       { data && data.pages && data.pages.map((page) =>
         <BookPage {...page} />
       )}
-    </>
+    </div>
   );
 }
 
