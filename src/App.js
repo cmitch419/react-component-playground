@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import BookPage from './components/BookPage/BookPage'
+const data = {
+  pages: [
+    {
+      type: 'bookPage',
+      image: './some-image.jpg',
+      caption: 'Something interesting',
+      text: 'Hey yo',
+      components: [
+        {
+          type: 'shape',
+          shape: 'circle',
+          width: 100,
+          height: 100,
+          x: 0,
+          y: 100
+        }
+      ]
+    },
+    {
+      type: 'bookPage',
+      image: './some-image.jpg',
+      caption: 'Something interesting',
+      text: 'Hey yo',
+    },
+  ],
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      { data && data.pages && data.pages.map((page) =>
+        <BookPage {...page} />
+      )}
+    </>
   );
 }
 
