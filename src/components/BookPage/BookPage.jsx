@@ -4,23 +4,48 @@ import debounce from 'debounce';
 
 const StyledBookPage = styled.div`
   position: relative;
+  height: ${props => props.height}px;
   img {
     position: absolute;
+    width: 100%;
+    height: auto;
   }
 `;
 
-const Shape = styled.div`
+const Circle = styled.div`
   position: absolute;
+  opacity: 50%;
   width: ${props => props.width || 100}px;
   height: ${props => props.height || 100}px;
   background: red;
   border-radius: 50%;
-  transform: translate(${props => props.x || 0}px, ${props => props.y || 0}px);
+  left: calc(${props => props.x || 0}% - ${props => props.width / 2}px);
+  top: calc(${props => props.y || 0}% - ${props => props.height / 2}px);
+  :hover {
+    opacity: 20%;
+  }
 `;
+
+const Shape = ({ shape, ...props}) => {
+  switch(shape) {
+    case 'circle':
+      return <Circle {...props} />
+    default:
+      return null;
+  }
+};
+
+const AudioComponent = ({ src, targetId }) => {
+  const myAudioElement = new Audio(src);
+  myAudioElement.addEventListener("canplaythrough", () => {
+    document.getElementById(targetId).onclick = () => myAudioElement.play();
+  });
+  return null;
+};
 
 const BookPage = ({ image, caption, text, components }) => {
   const imgEl = useRef(null);
-  const [dimensions, setDimensions] = useState({width: 0, height: 0});
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     const updateDimensions = debounce(() => {
@@ -39,14 +64,28 @@ const BookPage = ({ image, caption, text, components }) => {
 
   return (
     <>
-      <span>
-        {JSON.stringify(dimensions)}
-      </span>
-      <StyledBookPage>
-        <img ref={imgEl} src={image} alt={caption} />
-        { components && components.filter((item) => item.type === 'shape').map(shape => (
-          <Shape {...shape}/>
-        ))}
+      <StyledBookPage {...dimensions} >
+        <img
+          ref={imgEl}
+          src={image}
+          alt={caption}
+          onLoad={() =>
+            setDimensions({
+              width: imgEl.current.offsetWidth,
+              height: imgEl.current.offsetHeight,
+            })}
+        />
+        {components && components.map((component) => {
+          switch (component.type) {
+            case 'shape':
+              return <Shape key={component.id} {...component} />
+            case 'audio':
+              return <AudioComponent key={component.id} {...component} />
+            default:
+              break;
+          }
+          return;
+        })}
       </StyledBookPage>
     </>
   );
