@@ -40,6 +40,12 @@ const data = {
           type: 'audio',
           src: 'https://www.soundjay.com/human/fart-01.mp3',
           targetId: 2,
+        },
+        {
+          id: 5,
+          type: 'audio',
+          src: 'https://www.soundjay.com/human/fart-squeak-01.mp3',
+          targetId: 1,
         }
       ]
     },
@@ -56,7 +62,7 @@ function App() {
   return (
     <div>
       { data && data.pages && data.pages.map((page) =>
-        <BookPage {...page} />
+        <BookPage key={`page${page.id}`} {...page} />
       )}
     </div>
   );
