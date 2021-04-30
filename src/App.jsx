@@ -20,8 +20,8 @@ const data = {
         {
           id: 2,
           type: 'shape',
-          shape: 'circle',
-          width: 30,
+          shape: 'rectangle',
+          width: 50,
           height: 30,
           x: 25,
           y: 25
@@ -29,7 +29,7 @@ const data = {
         {
           id: 3,
           type: 'shape',
-          shape: 'circle',
+          shape: 'triangle',
           width: 50,
           height: 50,
           x: 75,
@@ -46,6 +46,12 @@ const data = {
           type: 'audio',
           src: 'https://www.soundjay.com/human/fart-squeak-01.mp3',
           targetId: 1,
+        },
+        {
+          id: 6,
+          type: 'audio',
+          src: 'https://www.soundjay.com/button/button-3.mp3',
+          targetId: 3,
         }
       ]
     },
