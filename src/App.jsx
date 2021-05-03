@@ -1,4 +1,9 @@
-import BookPage from './components/BookPage/BookPage'
+import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import ClickContainer from './components/OverlaysAndJunk/ClickContainer'
+import Image from './components/OverlaysAndJunk/ContainerImage';
+import Wrapper from './components/OverlaysAndJunk/Wrapper';
+import Shape from './components/OverlaysAndJunk/Shape';
 const data = {
   pages: [
     {
@@ -56,6 +61,7 @@ const data = {
       ]
     },
     {
+      id: 2,
       type: 'bookPage',
       image: './some-image.jpg',
       caption: 'Something interesting',
@@ -64,13 +70,73 @@ const data = {
   ],
 };
 
+const PageContainer = styled.div`
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 300px;
+  border-style: dotted red;
+`;
+
+const data2 = [
+  {
+    id: 1,
+    image: 'https://www.fillmurray.com/50/50',
+    top: 0,
+    left: 0,
+  },
+  {
+    id: 2,
+    image: 'https://www.fillmurray.com/200/50',
+    top: 25,
+    left: 25,
+  },
+  {
+    id: 3,
+    image: 'https://www.fillmurray.com/100/100',
+    top: 50,
+    left: 50,
+  },
+  {
+    id: 4,
+    image: 'https://www.fillmurray.com/50/100',
+    top: 75,
+    left: 75,
+  },
+  {
+    id: 5,
+    image: 'https://www.fillmurray.com/50/200',
+    top: 100,
+    left: 100,
+  },
+];
+
+const config = {
+  width: "500px",
+  height: "100px",
+};
+
 function App() {
-  return (
-    <div>
-      { data && data.pages && data.pages.map((page) =>
-        <BookPage key={`page${page.id}`} {...page} />
-      )}
-    </div>
+    return (
+      
+    // <ClickContainer {...config}>
+    //   { data2.map((item, idx) =>
+    //     <Wrapper key={item.id} top={item.top} left={item.left}>
+    //       <Image src={item.image} />
+    //     </Wrapper>
+    //   )}
+    //   <Wrapper key="shapey1" top={10} left={10} width={10} height={10}>
+    //     <Shape shape="circle" />
+    //   </Wrapper>
+    //   <Wrapper key="shapey2" top={30} left={30} width={10} height={10}>
+    //     <Shape shape="rectangle" />
+    //   </Wrapper>
+    // </ClickContainer>
+    // <PageContainer>
+    //   { data && data.pages && data.pages.map((page) =>
+    //     <BookPage key={`page${page.id}`} {...page} />
+    //   )}
+    // </PageContainer>
   );
 }
 
