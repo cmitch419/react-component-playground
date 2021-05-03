@@ -4,6 +4,8 @@ import ClickContainer from './components/OverlaysAndJunk/ClickContainer'
 import Image from './components/OverlaysAndJunk/ContainerImage';
 import Wrapper from './components/OverlaysAndJunk/Wrapper';
 import Shape from './components/OverlaysAndJunk/Shape';
+
+import Week from './components/Calendar/Week';
 const data = {
   pages: [
     {
@@ -116,9 +118,17 @@ const config = {
   height: "100px",
 };
 
+const days = [
+  {
+    
+  },
+
+]
+
 function App() {
     return (
-      
+      <Week />
+
     // <ClickContainer {...config}>
     //   { data2.map((item, idx) =>
     //     <Wrapper key={item.id} top={item.top} left={item.left}>
